@@ -15,7 +15,10 @@ export class PokemonsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pokemonService.getAll().subscribe(value => this.pokemons = value.results)
+    this.pokemonService.getAll().subscribe(value => {
+      this.pokemons = value.results
+
+    })
 
   }
 

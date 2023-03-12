@@ -14,4 +14,6 @@ export class PokemonService {
   getAll(): Observable<IPokemonResponse<IResults>> {
     return this.httpClient.get<IPokemonResponse<IResults>>(urls.pokemon)
   }
+
+
 }
