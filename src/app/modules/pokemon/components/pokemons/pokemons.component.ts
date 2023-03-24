@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PokemonService} from "../../services";
-import {IResults} from "../../interfaces";
+import {IPokemonDetails} from "../../interfaces";
 
 @Component({
   selector: 'app-pokemons',
@@ -9,17 +9,18 @@ import {IResults} from "../../interfaces";
 })
 export class PokemonsComponent implements OnInit {
 
-  pokemons: IResults[];
+  pokemons: IPokemonDetails[] = [];
 
   constructor(private pokemonService: PokemonService) {
   }
 
   ngOnInit(): void {
-    this.pokemonService.getAll().subscribe(value => {
-      this.pokemons = value.results
-
+    this.pokemonService.getAll().subscribe(res => {
+      res.results.forEach(result => {
+        this.pokemonService.getDetails(result.url).subscribe(value => {
+          this.pokemons.push(value);
+        })
+      })
     })
-
   }
-
 }
