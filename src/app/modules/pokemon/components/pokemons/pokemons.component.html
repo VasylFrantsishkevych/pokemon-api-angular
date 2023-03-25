@@ -1,3 +1,9 @@
 <div class="pokemons-list">
-  <app-pokemon class="card" *ngFor="let pokemon of pokemons" [pokemon]="pokemon"></app-pokemon>
+  <div *ngFor="let name of names">{{name.name}}</div>
+  <app-pokemon
+    class="card"
+    *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: 20, currentPage: page, totalItems: totalItem}"
+    [pokemon]="pokemon"></app-pokemon>
+  <pagination-controls (pageChange)="page = $event; pokemons = []; getPokemons()"></pagination-controls>
 </div>
+

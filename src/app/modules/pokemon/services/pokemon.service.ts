@@ -11,8 +11,8 @@ export class PokemonService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(): Observable<IPokemonResponse> {
-    return this.httpClient.get<IPokemonResponse>(urls.pokemon)
+  getAll(limit: number, offset: number): Observable<IPokemonResponse> {
+    return this.httpClient.get<IPokemonResponse>(`${urls.pokemon}?limit=${limit}&offset=${offset}`);
   }
 
   getDetails(url: string): Observable<IPokemonDetails> {

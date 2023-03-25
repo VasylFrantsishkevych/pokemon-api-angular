@@ -5,6 +5,8 @@ import { PokemonRoutingModule } from './pokemon-routing.module';
 import { PokemonsComponent } from './components/pokemons/pokemons.component';
 import {PokemonService} from "./services";
 import { PokemonComponent } from './components/pokemon/pokemon.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
   ],
   imports: [
     CommonModule,
-    PokemonRoutingModule
+    PokemonRoutingModule,
+    MatPaginatorModule,
+    NgxPaginationModule
   ],
   providers: [
     PokemonService,
