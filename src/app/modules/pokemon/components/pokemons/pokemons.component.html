@@ -1,9 +1,12 @@
-<div class="pokemons-list">
-  <div *ngFor="let name of names">{{name.name}}</div>
-  <app-pokemon
-    class="card"
-    *ngFor="let pokemon of pokemons | paginate: { itemsPerPage: 20, currentPage: page, totalItems: totalItem}"
-    [pokemon]="pokemon"></app-pokemon>
-  <pagination-controls (pageChange)="page = $event; pokemons = []; getPokemons()"></pagination-controls>
+<div class="pokemons-container">
+  <div class="pokemon-list">
+    <app-pokemon
+      class="card"
+      *ngFor="let pokemon of pokemons
+      |
+      paginate: { itemsPerPage: 20, currentPage: page, totalItems: totalItem}" [pokemon]="pokemon">
+    </app-pokemon>
+  </div>
+  <pagination-controls class="pagination" (pageChange)="page = $event; pokemons = []; changeOffset(); getPokemons();"></pagination-controls>
 </div>
 

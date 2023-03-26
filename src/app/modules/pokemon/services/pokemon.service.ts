@@ -11,11 +11,14 @@ export class PokemonService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(limit: number, offset: number): Observable<IPokemonResponse> {
-    return this.httpClient.get<IPokemonResponse>(`${urls.pokemon}?limit=${limit}&offset=${offset}`);
+  getAll(limit: number, offset: number, page: number): Observable<IPokemonResponse> {
+    return this.httpClient.get<IPokemonResponse>(`${urls.pokemon}?limit=${limit}&offset=${offset}`, {params: {page}});
   }
+  // getAll(): Observable<IPokemonResponse> {
+  //   return this.httpClient.get<IPokemonResponse>(urls.pokemon);
+  // }
 
-  getDetails(url: string): Observable<IPokemonDetails> {
-    return this.httpClient.get<IPokemonDetails>(url)
+  getDetails(name: string): Observable<IPokemonDetails> {
+    return this.httpClient.get<IPokemonDetails>(`${urls.pokemon}/${name}`)
   }
 }

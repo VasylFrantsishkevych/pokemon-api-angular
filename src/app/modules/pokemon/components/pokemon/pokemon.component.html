@@ -1,6 +1,8 @@
 <div class="pokemon-card">
   <h3 class="pokemon-name">{{pokemon.name[0].toUpperCase()+pokemon.name.slice(1)}} - {{pokemon.id}}</h3>
-  <img src="{{pokemon.sprites.other.home.front_default}}" alt="{{pokemon.name}}">
+  <img *ngIf="pokemon.sprites.other.home.front_default"
+       src="{{pokemon.sprites.other.home.front_default}}"
+       alt="{{pokemon.name}}">
   <div class="pokemon-type">
     <div class="pokemon-type__name {{changeBGColor(type.type.name)}}" *ngFor="let type of pokemon.types">{{type.type.name}}</div>
   </div>

@@ -1,4 +1,4 @@
-.pokemons-list {
+.pokemons-container {
   width: 80%;
   margin: 0 auto;
   background-color: #fff;
@@ -6,6 +6,8 @@
   clip-path: inset(0 -15px 0 -15px);
   box-sizing: border-box;
   padding: 25px;
+}
+.pokemon-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -17,4 +19,7 @@
   box-sizing: border-box;
   box-shadow: 0 0 5px dimgray;
   padding: 8px;
+}
+.pagination {
+  text-align: center;
 }

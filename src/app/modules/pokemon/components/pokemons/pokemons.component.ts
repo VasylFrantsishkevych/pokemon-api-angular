@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PokemonService} from "../../services";
-import {IPokemonDetails, IResults} from "../../interfaces";
+import {IPokemonDetails} from "../../interfaces";
 
 
 @Component({
@@ -12,8 +12,9 @@ export class PokemonsComponent implements OnInit {
 
   pokemons: IPokemonDetails[] = [];
   totalItem: number;
+  offset: number = 0;
+  limit: number = 20;
   page = 1;
-  names: IResults[];
 
   constructor(
     private pokemonService: PokemonService,
@@ -23,17 +24,27 @@ export class PokemonsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPokemons();
+    this.changeOffset();
   }
 
   getPokemons() {
-    this.pokemonService.getAll(20, this.page+1).subscribe(res => {
+    this.pokemonService.getAll(this.limit, this.offset, this.page).subscribe(res => {
       this.totalItem = res.count;
-      this.names = res.results;
+
       res.results.forEach(result => {
-        this.pokemonService.getDetails(result.url).subscribe(value => {
+        this.pokemonService.getDetails(result.name).subscribe(value => {
           this.pokemons.push(value);
         })
       })
+      console.log(this.pokemons);
     })
+  }
+
+  changeOffset() {
+    if (this.page === 1) {
+      this.offset = 0
+    }else {
+      this.offset = this.page * this.limit - this.limit;
+    }
   }
 }

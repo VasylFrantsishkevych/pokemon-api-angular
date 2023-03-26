@@ -50,6 +50,8 @@ export class PokemonComponent implements OnInit {
         return 'bg-dragon'
       }else if (name === 'bug') {
         return 'bg-bug'
+      }else if (name === 'fairy') {
+        return 'bg-fairy'
       }else {
         return 'bg-dark'
       }
